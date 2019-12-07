@@ -49,7 +49,7 @@ app.get("/contacts", function(req, res) {
   Contact.find({}, function(err, contacts) {
     console.log(contacts);
     if(err) return res.json(err);
-    res.render(path.join(__dirname, 'views', 'index.ejs'), {contacts:contacts});
+    res.render(path.join(__dirname, 'views', 'index.ejs'), {contacts: contacts});
   })
 });
 
@@ -64,28 +64,28 @@ app.post("/contacts", function(req, res) {
   });
 });
 
-app.get("/contacts/:id", function(req, res){
-  Contact.findOne({_id:req.params.id}, function(err, contact){
-    if(err) return res.json(err);
-    res.render(path.join(__dirname, 'views', 'show.ejs'), {contact:contact});  });
-});
+// app.get("/contacts/:id", function(req, res){
+//   Contact.findOne({_id: req.params.id}, function(err, contact){
+//     if(err) return res.json(err);
+//     res.render(path.join(__dirname, 'views', 'show.ejs'), {contact: contact});  });
+// });
 
 app.get("/contacts/:id/edit", function(req, res){
-  Contact.findOne({_id:req.params.id}, function(err, contact){
+  Contact.findOne({_id: req.params.id}, function(err, contact){
     if(err) return res.json(err);
-    res.render(path.join(__dirname, 'views', 'edit.ejs'), {contact:contact});  
+    res.render(path.join(__dirname, 'views', 'edit.ejs'), {contact: contact});  
   });
 });
 
 app.put("/contacts/:id", function(req, res){
-  Contact.findOneAndUpdate({_id:req.params.id}, req.body, function(err, contact){
+  Contact.findOneAndUpdate({_id: req.params.id}, req.body, function(err, contact){
     if(err) return res.json(err);    
-    res.redirect("/contacts/"+req.params.id);  
+    res.redirect("/contacts");  
   });
 });
 
 app.delete("/contacts/:id", function(req, res){
-  Contact.deleteOne({_id:req.params.id}, function(err, contact){
+  Contact.deleteOne({_id: req.params.id}, function(err, contact){
     if(err) return res.json(err);    
     res.redirect("/contacts"); 
   });
